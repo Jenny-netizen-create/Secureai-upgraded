@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Quiz - SecureAI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo"><img src="Images/Secure-AI-Logo.png" alt="Logo"></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="threat-detection.html">AI in Threat Detection</a></li>
+                <li><a href="ai-vs-cybercrime.html">AI vs Cybercrime</a></li>
+                <li><a href="quiz.html" class="active">Quiz</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="nav-right">
+            <input type="text" placeholder="Search threats, features..." data-testid="search-input">
+            <button class="theme-toggle" id="themeToggle" data-testid="theme-toggle-btn"></button>
+            <button class="login-btn" onclick="window.location.href='login.html'" data-testid="login-nav-btn">Login / Signup</button>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" data-testid="hamburger-btn">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <section class="quiz-section">
+        <div class="quiz-card fade-in">
+            <div class="quiz-header">
+                <h1><i class="fa-solid fa-shield-halved"></i> AI Cybersecurity Quiz</h1>
+                <p>Test your knowledge of AI in cybersecurity. 10 questions, no time limit.</p>
+            </div>
+
+            <div id="quizIntro" class="quiz-stage">
+                <div class="quiz-intro-grid">
+                    <div class="quiz-intro-item"><i class="fa-solid fa-list-check"></i><span>10 Questions</span></div>
+                    <div class="quiz-intro-item"><i class="fa-solid fa-stopwatch"></i><span>No Timer</span></div>
+                    <div class="quiz-intro-item"><i class="fa-solid fa-graduation-cap"></i><span>Instant Feedback</span></div>
+                </div>
+                <button class="quiz-btn" id="startBtn"><i class="fa-solid fa-play"></i> Start Quiz</button>
+            </div>
+
+            <div id="quizPlay" class="quiz-stage hidden">
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar"><div id="progressFill"></div></div>
+                    <span id="progressText">Question 1 of 10</span>
+                </div>
+                <h2 id="questionText"></h2>
+                <div id="optionsList" class="quiz-options"></div>
+                <div class="quiz-feedback" id="feedback"></div>
+                <button class="quiz-btn" id="nextBtn" disabled>Next <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <div id="quizResult" class="quiz-stage hidden">
+                <div class="quiz-result-icon" id="resultIcon"></div>
+                <h2 id="resultTitle">Quiz Complete!</h2>
+                <p class="quiz-score-text">Your Score</p>
+                <div class="quiz-score" id="scoreNumber">0 / 10</div>
+                <p id="resultMessage" class="quiz-result-message"></p>
+                <div class="quiz-actions">
+                    <button class="quiz-btn" id="restartBtn"><i class="fa-solid fa-rotate-right"></i> Try Again</button>
+                    <a href="news.html" class="quiz-btn quiz-btn-outline"><i class="fa-solid fa-newspaper"></i> Read News</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer><p>© 2026 SecureAI. All rights reserved</p></footer>
+
+    <script src="script.js"></script>
+    <script>
+    const QUESTIONS = [
+        { q: "What does AI primarily use to detect cyber threats?", options: ["Manual rule lists", "Pattern recognition & machine learning", "Random guessing", "Antivirus signatures only"], answer: 1, explain: "AI uses pattern recognition and machine learning to spot anomalies that traditional rule-based systems miss." },
+        { q: "Which of these is an example of AI being misused by cybercriminals?", options: ["Encrypting your hard drive", "Deepfake videos to impersonate executives", "Updating your operating system", "Sending birthday greetings"], answer: 1, explain: "Deepfakes use AI to create convincing fake audio/video, often used in impersonation scams." },
+        { q: "What is 'phishing'?", options: ["A type of fishing sport", "A fraudulent attempt to obtain sensitive info via fake messages", "A network protocol", "A firewall feature"], answer: 1, explain: "Phishing tricks users into revealing credentials or installing malware via fake emails, sites, or messages." },
+        { q: "What is anomaly detection?", options: ["Detecting only known viruses", "Spotting behaviour that deviates from normal patterns", "Blocking all traffic", "Encrypting files"], answer: 1, explain: "Anomaly detection flags activity that diverges from a learned baseline — useful for catching zero-day attacks." },
+        { q: "Which is a benefit of AI-driven 24/7 monitoring?", options: ["It needs constant human approval", "Continuous, real-time threat surveillance", "Only works during business hours", "Replaces backups"], answer: 1, explain: "AI monitors networks non-stop, catching threats faster than humans alone." },
+        { q: "Prompt injection is an attack on what kind of system?", options: ["Plumbing", "Large language models (LLMs)", "Power grids", "Wi-Fi routers"], answer: 1, explain: "Prompt injection manipulates LLM inputs to make AI output unintended or harmful results." },
+        { q: "Why is multi-factor authentication (MFA) important?", options: ["It looks cool", "Adds extra layers beyond just a password", "Slows down your computer", "Replaces antivirus"], answer: 1, explain: "MFA combines something you know + something you have/are, drastically reducing account takeovers." },
+        { q: "What is ransomware?", options: ["Free software", "Malware that encrypts files and demands payment", "A type of firewall", "A backup tool"], answer: 1, explain: "Ransomware locks files and demands a ransom — often spread via phishing or unpatched systems." },
+        { q: "How can AI improve fraud detection?", options: ["By ignoring transactions", "By learning patterns and flagging unusual activity instantly", "By approving all payments", "By printing reports"], answer: 1, explain: "AI models learn typical user behaviour and flag deviations such as unusual location or amount." },
+        { q: "Best practice for staying safe online?", options: ["Reuse the same password everywhere", "Click every link you see", "Use strong unique passwords + MFA + stay updated", "Disable all security tools"], answer: 2, explain: "Strong unique passwords, MFA, and keeping software updated are essential basics for everyone." }
+    ];
+    let current = 0, score = 0, locked = false;
+    const intro = document.getElementById('quizIntro');
+    const play = document.getElementById('quizPlay');
+    const result = document.getElementById('quizResult');
+    const startBtn = document.getElementById('startBtn');
+    const restartBtn = document.getElementById('restartBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const qText = document.getElementById('questionText');
+    const optionsList = document.getElementById('optionsList');
+    const feedback = document.getElementById('feedback');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+
+    startBtn.addEventListener('click', () => { intro.classList.add('hidden'); play.classList.remove('hidden'); current = 0; score = 0; renderQuestion(); });
+    restartBtn.addEventListener('click', () => { result.classList.add('hidden'); intro.classList.remove('hidden'); });
+    nextBtn.addEventListener('click', () => { current++; current >= QUESTIONS.length ? showResult() : renderQuestion(); });
+
+    function renderQuestion() {
+        locked = false;
+        const item = QUESTIONS[current];
+        qText.textContent = item.q;
+        optionsList.innerHTML = '';
+        item.options.forEach((opt, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'quiz-option';
+            btn.innerHTML = '<span class="quiz-option-letter">' + String.fromCharCode(65 + i) + '</span>' + opt;
+            btn.addEventListener('click', () => selectOption(i, btn));
+            optionsList.appendChild(btn);
+        });
+        feedback.textContent = '';
+        feedback.className = 'quiz-feedback';
+        nextBtn.disabled = true;
+        progressFill.style.width = ((current) / QUESTIONS.length) * 100 + '%';
+        progressText.textContent = `Question ${current + 1} of ${QUESTIONS.length}`;
+    }
+    function selectOption(i, btn) {
+        if (locked) return;
+        locked = true;
+        const item = QUESTIONS[current];
+        const all = optionsList.querySelectorAll('.quiz-option');
+        all.forEach(b => b.disabled = true);
+        if (i === item.answer) {
+            btn.classList.add('correct'); score++;
+            feedback.innerHTML = '<i class="fa-solid fa-circle-check"></i> Correct! ' + item.explain;
+            feedback.classList.add('correct');
+        } else {
+            btn.classList.add('wrong');
+            all[item.answer].classList.add('correct');
+            feedback.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Not quite. ' + item.explain;
+            feedback.classList.add('wrong');
+        }
+        nextBtn.disabled = false;
+    }
+    function showResult() {
+        play.classList.add('hidden');
+        result.classList.remove('hidden');
+        document.getElementById('scoreNumber').textContent = score + ' / ' + QUESTIONS.length;
+        const icon = document.getElementById('resultIcon');
+        const msg = document.getElementById('resultMessage');
+        if (score >= 8) { icon.innerHTML = '<i class="fa-solid fa-trophy"></i>'; icon.className = 'quiz-result-icon gold'; msg.textContent = "Outstanding! You're a cybersecurity champion."; }
+        else if (score >= 5) { icon.innerHTML = '<i class="fa-solid fa-medal"></i>'; icon.className = 'quiz-result-icon silver'; msg.textContent = "Solid effort. Brush up on a few topics and you'll ace it next time."; }
+        else { icon.innerHTML = '<i class="fa-solid fa-book-open"></i>'; icon.className = 'quiz-result-icon bronze'; msg.textContent = "Good start! Explore the SecureAI pages to level up your knowledge."; }
+    }
+    </script>
+</body>
+</html>

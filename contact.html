@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - SecureAI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <img src="Images/Secure-AI-Logo.png" alt="Logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="threat-detection.html">AI in Threat Detection</a></li>
+            <li><a href="ai-vs-cybercrime.html">AI vs Cybercrime</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="contact.html" class="active">Contact Us</a></li>
+        </ul>
+    </nav>
+    <div class="nav-right">
+        <input type="text" placeholder="Search threats, features..." data-testid="search-input">
+        <button class="theme-toggle" id="themeToggle" data-testid="theme-toggle-btn"></button>
+        <button class="login-btn" onclick="window.location.href='login.html'" data-testid="login-nav-btn">Login / Signup</button>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" data-testid="hamburger-btn">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<section class="hero">
+    <img src="Images/Contact-Us-Background.jpg" class="bg-image" alt="Background">
+    <div class="overlay"></div>
+    <div class="content contact-layout fade-in">
+        <div class="contact-form">
+            <h1>Contact Us</h1>
+            <p>If you have any questions about SecureAI, cybersecurity solutions, or AI-powered threat detection, feel free to contact our team.</p>
+            <form id="contactForm">
+                <label>Name</label>
+                <div class="contact-input-box">
+                    <img src="Images/Name-Icon.png">
+                    <input type="text" id="name" placeholder="Name">
+                </div>
+                <label>Email</label>
+                <div class="contact-input-box">
+                    <img src="Images/Mail-Icon.png">
+                    <input type="email" id="email" placeholder="Email">
+                </div>
+                <label>Message</label>
+                <textarea id="messageInput" placeholder="Type Your Message"></textarea>
+                <button type="submit" class="contact-submit-btn" id="submitBtn">Submit Message</button>
+                <p id="formMessage" class="form-message"></p>
+            </form>
+        </div>
+        <div class="contact-info">
+            <div class="contact-info-box">
+                <p><img src="Images/Contact-Icon.png"> +44 (096) 455-21000</p>
+                <p><img src="Images/Mail-Icon.png"> support@secureai.com</p>
+                <p><img src="Images/Location-Icon.png"> SecureAI Cybersecurity Ltd<br>10 Technology Drive<br>London, UK</p>
+                <div class="contact-socials">
+                    <img src="Images/GitHub-Icon.png">
+                    <img src="Images/Linkedin-Icon.png">
+                    <img src="Images/X-Icon.png">
+                    <img src="Images/Instagram-Icon.png">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 SecureAI. All rights reserved</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+const form = document.getElementById("contactForm");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const messageInput = document.getElementById("messageInput");
+const formMessage = document.getElementById("formMessage");
+const submitBtn = document.getElementById("submitBtn");
+
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const message = messageInput.value.trim();
+    formMessage.textContent = "";
+    formMessage.className = "form-message";
+
+    if (!name || !email || !message) {
+        formMessage.textContent = "Please fill in all fields!";
+        formMessage.classList.add("error");
+        return;
+    }
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        formMessage.textContent = "Enter a valid email address!";
+        formMessage.classList.add("error");
+        return;
+    }
+    if (message.length < 10) {
+        formMessage.textContent = "Message must be at least 10 characters!";
+        formMessage.classList.add("error");
+        return;
+    }
+    formMessage.textContent = "Sending message...";
+    formMessage.classList.add("loading");
+    submitBtn.disabled = true;
+    setTimeout(() => {
+        formMessage.textContent = "Message sent successfully!";
+        formMessage.classList.remove("loading");
+        formMessage.classList.add("success");
+        form.reset();
+        submitBtn.disabled = false;
+    }, 1000);
+});
+</script>
+</body>
+</html>

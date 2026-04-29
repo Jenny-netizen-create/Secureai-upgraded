@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Articles - SecureAI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo"><img src="Images/Secure-AI-Logo.png" alt="Logo"></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="threat-detection.html">AI in Threat Detection</a></li>
+                <li><a href="ai-vs-cybercrime.html">AI vs Cybercrime</a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+                <li><a href="news.html" class="active">News</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="nav-right">
+            <input type="text" placeholder="Search threats, features..." data-testid="search-input">
+            <button class="theme-toggle" id="themeToggle" data-testid="theme-toggle-btn"></button>
+            <button class="login-btn" onclick="window.location.href='login.html'" data-testid="login-nav-btn">Login / Signup</button>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" data-testid="hamburger-btn">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <section class="news-hero">
+        <div class="news-hero-content fade-in">
+            <h1><i class="fa-solid fa-newspaper"></i> News & Articles</h1>
+            <p>Stay informed about the latest developments in AI, cybersecurity, and emerging digital threats.</p>
+            <div class="news-filters" id="newsFilters">
+                <button class="news-filter active" data-cat="all">All</button>
+                <button class="news-filter" data-cat="ai">AI</button>
+                <button class="news-filter" data-cat="threats">Threats</button>
+                <button class="news-filter" data-cat="defence">Defence</button>
+                <button class="news-filter" data-cat="education">Education</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-grid-wrap">
+        <div class="news-grid" id="newsGrid">
+            <article class="news-card fade-in" data-cat="ai">
+                <div class="news-card-tag">AI</div>
+                <div class="news-card-icon"><i class="fa-solid fa-brain"></i></div>
+                <h3>How Machine Learning Detects Zero-Day Attacks</h3>
+                <p>Modern ML models analyse millions of traffic patterns to flag unknown threats before they spread — even without signatures.</p>
+                <div class="news-meta"><i class="fa-regular fa-clock"></i> 5 min read</div>
+            </article>
+            <article class="news-card fade-in" data-cat="threats">
+                <div class="news-card-tag">Threats</div>
+                <div class="news-card-icon"><i class="fa-solid fa-user-secret"></i></div>
+                <h3>Deepfake Phishing on the Rise</h3>
+                <p>Attackers are using AI-generated voices and videos to impersonate CEOs and bypass traditional verification methods.</p>
+                <div class="news-meta"><i class="fa-regular fa-clock"></i> 4 min read</div>
+            </article>
+            <article class="news-card fade-in" data-cat="defence">
+                <div class="news-card-tag">Defence</div>
+                <div class="news-card-icon"><i class="fa-solid fa-shield-virus"></i></div>
+                <h3>AI-Driven Firewalls: The New Frontier</h3>
+                <p>Next-gen firewalls now use behavioural AI to adapt rules in real time, drastically reducing false positives and missed threats.</p>
+                <div class="news-meta"><i class="fa-regular fa-clock"></i> 6 min read</div>
+            </article>
+            <article class="news-card fade-in" data-cat="education">
+                <div class="news-card-tag">Education</div>
+                <div class="news-card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <h3>10 Cybersecurity Habits Everyone Should Adopt</h3>
+                <p>From strong unique passwords to MFA and software updates — small habits that prevent the majority of attacks.</p>
+                <div class="news-meta"><i class="fa-regular fa-clock"></i> 3 min read</div>
+            </article>
+            <article class="news-card fade-in" data-cat="threats">
+                <div class="news-card-tag">Threats</div>
+                <div class="news-card-icon"><i class="fa-solid fa-bug"></i></div>
+                <h3>Ransomware Trends in 2026</h3>
+                <p>Attackers now use double-extortion: encrypting files AND threatening to leak stolen data if ransom is unpaid.</p>
+                <div class="news-meta"><i class="fa-regular fa-clock"></i> 7 min read</div>
+            </article>
+            <article class="news-card fade-in" data-cat="ai">
+                <div class="news-card-tag">AI</div>
+                <div class="news-card-icon"><i class="fa-solid fa-robot"></i></div>
+                <h3>Prompt Injection: The New SQL Injection</h3>
+                <p>As LLMs power more apps, prompt-injection attacks bypass guardrails — defenders must learn new mitigation strategies.</p>
+                <div class="news-meta"><i class="fa-regular fa-clock"></i> 5 min read</div>
+            </article>
+            <article class="news-card fade-in" data-cat="defence">
+                <div class="news-card-tag">Defence</div>
+                <div class="news-card-icon"><i class="fa-solid fa-network-wired"></i></div>
+                <h3>Zero Trust Architecture Explained</h3>
+                <p>"Never trust, always verify" — why zero-trust is replacing perimeter-based security models in modern enterprises.</p>
+                <div class="news-meta"><i class="fa-regular fa-clock"></i> 8 min read</div>
+            </article>
+            <article class="news-card fade-in" data-cat="education">
+                <div class="news-card-tag">Education</div>
+                <div class="news-card-icon"><i class="fa-solid fa-fingerprint"></i></div>
+                <h3>Passkeys vs Passwords: What's the Difference?</h3>
+                <p>Passkeys use cryptographic keys tied to your device, eliminating phishing and password reuse attacks entirely.</p>
+                <div class="news-meta"><i class="fa-regular fa-clock"></i> 4 min read</div>
+            </article>
+            <article class="news-card fade-in" data-cat="ai">
+                <div class="news-card-tag">AI</div>
+                <div class="news-card-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                <h3>AI in SOC: Reducing Analyst Burnout</h3>
+                <p>Security Operations Centres are deploying AI co-pilots to triage alerts, letting human analysts focus on real incidents.</p>
+                <div class="news-meta"><i class="fa-regular fa-clock"></i> 6 min read</div>
+            </article>
+        </div>
+    </section>
+
+    <footer><p>© 2026 SecureAI. All rights reserved</p></footer>
+
+    <script src="script.js"></script>
+    <script>
+        const filters = document.querySelectorAll('.news-filter');
+        const cards = document.querySelectorAll('.news-card');
+        filters.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filters.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const cat = btn.getAttribute('data-cat');
+                cards.forEach(c => {
+                    const show = cat === 'all' || c.getAttribute('data-cat') === cat;
+                    c.style.display = show ? '' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
